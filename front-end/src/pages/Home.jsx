@@ -4,7 +4,7 @@ import './Home.css';
 import axios from 'axios';
 
 // ✅ Set API base URL
-const apiUrl = process.env.REACT_APP_API_BASE_URL || 'https://zithara-jewellery.onrender.com';
+const apiUrl = (process.env.REACT_APP_API_BASE_URL || 'https://zithara-jewellery.onrender.com').replace(/\/$/, '');
 
 function Home() {
   const [image, setImage] = useState(null);
