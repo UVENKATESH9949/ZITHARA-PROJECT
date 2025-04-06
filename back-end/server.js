@@ -17,6 +17,10 @@ app.use('/api', authRoutes); // Register the route
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
+app.get("/", (req, res) => {
+  res.send("ZITHARA backend is live!");
+});
+
 mongoose.connect(MONGO_URI)
   .then(() => {
     console.log('MongoDB connected');
