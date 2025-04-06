@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Login.css';
 
-const apiUrl = process.env.REACT_APP_API_BASE_URL || 'https://zithara-jewellery.onrender.com';
+const apiUrl = (process.env.REACT_APP_API_BASE_URL || 'https://zithara-jewellery.onrender.com').replace(/\/$/, '');
 
 const Login = () => {
   const [email, setEmail] = useState('');
