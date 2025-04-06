@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "name": "Gold Necklace",
+      "tags": ["gold", "necklace"],
+      "image": "/uploads/gold-necklace.png"
+    },
+    {
+      "id": 2,
+      "name": "Diamond Ring",
+      "tags": ["diamond", "ring"],
+      "image": "/uploads/diamond-ring.png"
+    }
+  ]
+  

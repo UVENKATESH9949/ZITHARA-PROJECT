@@ -1,0 +1,137 @@
+.home-container {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.upload-box {
+  margin-top: 40px;
+  padding: 25px 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.upload-box:hover {
+  transform: scale(1.02);
+}
+
+.upload-box input[type="file"] {
+  margin: 20px 0;
+  font-size: 15px;
+}
+
+.preview-img {
+  width: 280px;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 15px;
+  border: 2px solid #ffb6c1;
+}
+
+button {
+  margin-top: 18px;
+  padding: 12px 24px;
+  font-size: 17px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #e055a0;
+  transform: translateY(-2px);
+}
+
+.nav-buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nav-buttons button {
+  background-color: #6a11cb;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.nav-buttons button:hover {
+  background-color: #5e0fa1;
+}
+.search-section {
+  margin-top: 50px;
+}
+
+.search-input {
+  padding: 12px 20px;
+  width: 300px;
+  font-size: 16px;
+  border: 2px solid #ff69b4;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #e055a0;
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+}
+
+.demo-items {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.demo-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 220px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.demo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.demo-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.demo-card h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.demo-card p {
+  margin-top: 6px;
+  font-weight: bold;
+  color: #ff69b4;
+}
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}

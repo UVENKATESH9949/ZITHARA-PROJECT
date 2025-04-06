@@ -1,0 +1,17 @@
+{
+  "name": "zitara",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "start": "concurrently \"npm run server\" \"npm run client\"",
+  "server": "cd back-end && node server.js",
+  "client": "cd front-end && npm start"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
