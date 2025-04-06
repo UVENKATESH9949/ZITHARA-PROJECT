@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './AdminDashboard.css';
 
+const apiUrl = (process.env.REACT_APP_API_BASE_URL || 'https://zithara-jewellery.onrender.com').replace(/\/$/, '');
+
 const AdminDashboard = () => {
   const [jewelleryItems, setJewelleryItems] = useState([]);
   const [formData, setFormData] = useState({
@@ -18,7 +20,7 @@ const AdminDashboard = () => {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/jewellery');
+      const response = await fetch(`${apiUrl}/api/jewellery`);
       const data = await response.json();
       setJewelleryItems(data);
     } catch (error) {
@@ -32,7 +34,7 @@ const AdminDashboard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const payload = {
       name: formData.name.trim(),
       price: formData.price.trim(),
@@ -40,21 +42,21 @@ const AdminDashboard = () => {
       category: formData.category.trim(),
       imageUrl: formData.imageUrl.trim()
     };
-  
-    console.log('Sending data to server:', payload); // ✅ Console log
-  
+
+    console.log('Sending data to server:', payload);
+
     const url = editId
-      ? `http://localhost:5000/api/jewellery/${editId}`
-      : 'http://localhost:5000/api/jewellery';
+      ? `${apiUrl}/api/jewellery/${editId}`
+      : `${apiUrl}/api/jewellery`;
     const method = editId ? 'PUT' : 'POST';
-  
+
     try {
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
-  
+
       if (response.ok) {
         setFormData({ name: '', price: '', description: '', category: '', imageUrl: '' });
         setEditId(null);
@@ -66,24 +68,19 @@ const AdminDashboard = () => {
       console.error('Save error:', error);
     }
   };
-  
-  
-  
-  
 
   const handleEdit = (item) => {
     const { _id, ...editableFields } = item;
     setFormData(editableFields);
     setEditId(_id);
   };
-  
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/jewellery/${id}`, {
+      const response = await fetch(`${apiUrl}/api/jewellery/${id}`, {
         method: 'DELETE',
       });
-  
+
       if (response.ok) {
         fetchItems(); // Refresh list after deletion
       } else {
@@ -93,7 +90,6 @@ const AdminDashboard = () => {
       console.error('Delete error:', error);
     }
   };
-  
 
   return (
     <div className="admin-container">
