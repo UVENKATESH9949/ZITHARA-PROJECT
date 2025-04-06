@@ -1,7 +1,8 @@
-// src/pages/Login.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Login.css';
+
+const apiUrl = process.env.REACT_APP_API_BASE_URL || 'https://zithara-jewellery.onrender.com';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Check if the login request is from the Admin button
   useEffect(() => {
     const state = location.state;
     if (state?.isAdminLogin) {
@@ -22,22 +22,22 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch(`${apiUrl}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, role }),
       });
       const data = await response.json();
-  
-      console.log("Login response:", data); // <-- ADD THIS
-  
+
+      console.log("Login response:", data);
+
       if (data.success) {
         localStorage.setItem('user', JSON.stringify({ role: data.role }));
         if (data.role === 'admin') {
-          console.log("Redirecting to Admin Page"); // <-- ADD THIS
+          console.log("Redirecting to Admin Page");
           navigate('/admin');
         } else {
-          console.log("Redirecting to Upload Page"); // <-- ADD THIS
+          console.log("Redirecting to Upload Page");
           navigate('/upload');
         }
       } else {
@@ -48,7 +48,6 @@ const Login = () => {
       setError('Server error. Please try again.');
     }
   };
-  
 
   return (
     <div className="login-container">
@@ -70,15 +69,12 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-
-          {/* Only show role dropdown if NOT coming from Admin click */}
           {!location.state?.isAdminLogin && (
             <select value={role} onChange={(e) => setRole(e.target.value)}>
               <option value="user">User</option>
               <option value="admin">Admin</option>
             </select>
           )}
-
           <button type="submit">Login</button>
         </form>
       </div>
