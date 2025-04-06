@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_BASE_URL;
-axios.get(`${apiUrl}/api/jewellery`)
+// ✅ Set API base URL
+const apiUrl = process.env.REACT_APP_API_BASE_URL || 'https://zithara-jewellery.onrender.com';
 
 function Home() {
   const [image, setImage] = useState(null);
@@ -12,17 +12,18 @@ function Home() {
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
 
+  // ✅ Fetch items from backend
   const fetchItems = async (query = '') => {
     try {
       const response = await axios.get(`${apiUrl}/api/jewellery?search=${query}&limit=50`);
       setItems(response.data);
     } catch (error) {
-      console.error('Failed to fetch jewellery items:', error);
+      console.error('❌ Failed to fetch jewellery items:', error);
     }
   };
 
   useEffect(() => {
-    fetchItems(); 
+    fetchItems();
   }, []);
 
   const handleSearch = () => {
