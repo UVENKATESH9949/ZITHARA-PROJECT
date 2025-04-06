@@ -4,6 +4,7 @@ import './Home.css';
 import axios from 'axios';
 
 const apiUrl = process.env.REACT_APP_API_BASE_URL;
+axios.get(`${apiUrl}/api/jewellery`)
 
 function Home() {
   const [image, setImage] = useState(null);
