@@ -3,29 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
 function Home() {
   const [image, setImage] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const apiUrl = process.env.REACT_APP_API_BASE_URL;
-
   const fetchItems = async (query = '') => {
-    setLoading(true);
     try {
       const response = await axios.get(`${apiUrl}/api/jewellery?search=${query}&limit=50`);
       setItems(response.data);
     } catch (error) {
       console.error('Failed to fetch jewellery items:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchItems();
+    fetchItems(); 
   }, []);
 
   const handleSearch = () => {
@@ -55,7 +51,9 @@ function Home() {
       </div>
 
       <div className="nav-buttons">
-        <button onClick={() => navigate('/login', { state: { isAdminLogin: true } })}>Admin</button>
+        <button onClick={() => navigate('/login', { state: { isAdminLogin: true } })}>
+          Admin
+        </button>
         <button onClick={() => navigate('/upload')}>Upload</button>
       </div>
 
@@ -71,9 +69,7 @@ function Home() {
       </div>
 
       <div className="demo-items">
-        {loading ? (
-          <p>Loading jewellery items...</p>
-        ) : items.length > 0 ? (
+        {items.length > 0 ? (
           items.map((item) => (
             <div
               key={item._id}
@@ -81,7 +77,7 @@ function Home() {
               onClick={() => handleItemClick(item)}
               style={{ cursor: 'pointer' }}
             >
-              <img src={item.imageUrl} alt={item.name || 'Jewellery'} className="demo-img" />
+              <img src={item.imageUrl} alt={item.name} className="demo-img" />
               <h3>{item.name}</h3>
               <p>₹{item.price}</p>
             </div>
@@ -91,7 +87,6 @@ function Home() {
         )}
       </div>
 
-      {/* Footer */}
       <footer className="footer">
         <p>&copy; {new Date().getFullYear()} Zitara Jewellery. All rights reserved.</p>
       </footer>
